@@ -25,3 +25,6 @@ def bigger(a,b):
         
 #bigger(3,4)
 slope(1,1,2,2)
+
+print("The max of 3 and 4 is", max(3,4))
+print("The max of 3 and 4 is", bigger(3,4))
