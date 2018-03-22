@@ -7,24 +7,47 @@ from ggame import *
 from random import randint
 
 
+
+
 ROWS = 20
 COLS = 40
 CELL_SIZE = 20
 
 def moveRight(event):
-    monkey.x += CELL_SIZE
-    if monkey.x == banana.x and monkey.y == banana.y:
-        moveBanana()
-        print("got it")
+    if monkey.x < (COLS-1)*CELL_SIZE:
+        monkey.x += CELL_SIZE
+        if monkey.x == banana.x and monkey.y == banana.y:
+            moveBanana()
+            print("got it")
+            data["score"] += 10
+            print(data["score"])
     
 def moveLeft(event):
-    monkey.x -= CELL_SIZE
+    if monkey.x > 0:
+        monkey.x -= CELL_SIZE
+        if monkey.x == banana.x and monkey.y == banana.y:
+            moveBanana()
+            data["score"] += 10
+            print(data["score"])
+    
 
 def moveDown(event):
-    monkey.y += CELL_SIZE
+    if monkey.y < (ROWS-1)*CELL_SIZE:
+        monkey.y += CELL_SIZE
+        if monkey.x == banana.x and monkey.y == banana.y:
+            moveBanana()
+            data["score"] += 10
+            print(data["score"])
+    
     
 def moveUp(event):
-    monkey.y -= CELL_SIZE
+    if monkey.y > 0:
+        monkey.y -= CELL_SIZE
+        if monkey.x == banana.x and monkey.y == banana.y:
+            moveBanana()
+            data["score"] += 10
+            print(data["score"])
+    
     
 def moveBanana():
     banana.x = randint(0,COLS-1)*CELL_SIZE
@@ -32,6 +55,11 @@ def moveBanana():
 
 
 if __name__ == "__main__":
+    
+    #hold baribales in a dicitionary
+    data = {} 
+    data["score"] = 0
+    
     
     #colors
     green = Color(0x006600,1)
