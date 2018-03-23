@@ -45,6 +45,7 @@ def moveUp(event):
     
     
 def moveBanana():
+    data["frames"] = 0 
     banana.x = randint(0,COLS-1)*CELL_SIZE
     banana.y = randint(0,ROWS-1)*CELL_SIZE
     
@@ -54,6 +55,11 @@ def updateScore():
     scoreBox = TextAsset("Score = " + str(data["score"]))
     data["scoreText"] = Sprite(scoreBox,(0,ROWS*CELL_SIZE))
     
+def step():
+    data["frames"] += 1
+    if data["frames"] == 300:
+        moveBanana()
+    
 
 
 if __name__ == "__main__":
@@ -61,6 +67,7 @@ if __name__ == "__main__":
     #hold baribales in a dicitionary
     data = {} 
     data["score"] = 0
+    data["frames"] = 0
     
     
     #colors
@@ -88,4 +95,4 @@ if __name__ == "__main__":
     App().listenKeyEvent("keydown","down arrow", moveDown)
     
     
-    App().run()
+    App().run(step)
