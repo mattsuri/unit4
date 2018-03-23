@@ -18,17 +18,14 @@ def moveRight(event):
         monkey.x += CELL_SIZE
         if monkey.x == banana.x and monkey.y == banana.y:
             moveBanana()
-            print("got it")
-            data["score"] += 10
-            print(data["score"])
+            updateScore()
     
 def moveLeft(event):
     if monkey.x > 0:
         monkey.x -= CELL_SIZE
         if monkey.x == banana.x and monkey.y == banana.y:
             moveBanana()
-            data["score"] += 10
-            print(data["score"])
+            updateScore()
     
 
 def moveDown(event):
@@ -36,8 +33,7 @@ def moveDown(event):
         monkey.y += CELL_SIZE
         if monkey.x == banana.x and monkey.y == banana.y:
             moveBanana()
-            data["score"] += 10
-            print(data["score"])
+            updateScore()
     
     
 def moveUp(event):
@@ -45,13 +41,19 @@ def moveUp(event):
         monkey.y -= CELL_SIZE
         if monkey.x == banana.x and monkey.y == banana.y:
             moveBanana()
-            data["score"] += 10
-            print(data["score"])
+            updateScore()
     
     
 def moveBanana():
     banana.x = randint(0,COLS-1)*CELL_SIZE
     banana.y = randint(0,ROWS-1)*CELL_SIZE
+    
+def updateScore():
+    data["score"] += 10
+    data["scoreText"].destroy() #remove old writing
+    scoreBox = TextAsset("Score = " + str(data["score"]))
+    data["scoreText"] = Sprite(scoreBox,(0,ROWS*CELL_SIZE))
+    
 
 
 if __name__ == "__main__":
@@ -70,11 +72,14 @@ if __name__ == "__main__":
     jungleBox = RectangleAsset(CELL_SIZE*COLS,CELL_SIZE*ROWS,LineStyle(1,green),green)
     monkeyBox = RectangleAsset(CELL_SIZE,CELL_SIZE,LineStyle(1,brown),brown)
     bananaBox = RectangleAsset(CELL_SIZE,CELL_SIZE,LineStyle(1, yellow), yellow)
+    scoreBox = TextAsset("Score = 0")
+    
     
     
     Sprite(jungleBox)
     monkey = Sprite(monkeyBox)
     banana = Sprite(bananaBox, (CELL_SIZE*COLS/2,CELL_SIZE*ROWS/2))
+    data["scoreText"] = Sprite(scoreBox,(0,ROWS*CELL_SIZE))
     
     
     App().listenKeyEvent("keydown","right arrow", moveRight)
