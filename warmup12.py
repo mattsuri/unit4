@@ -4,13 +4,11 @@
 
 
 def GCF(num1,num2):
-    if num1 < num2:
-        num1 = smaller
-        num2 = greater
-    else:
-        num2 = smaller
-        num1 = greater
+    min(num1,num2) = smaller
     for i in range (0,smaller):
         if greater%(smaller-i) == 0:
             return(smaller - i)
             break
+        
+        
+GCF(16,64)
