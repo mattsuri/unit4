@@ -5,9 +5,9 @@
 
 def GCF(num1,num2):
     
-    for i in range (0,smaller):
+    for i in range (0,num1):
         if num1%(num2-i) == 0:
-            return(smaller - i)
+            return(num1 - i)
             break
         
         
