@@ -4,9 +4,9 @@
 
 
 def GCF(num1,num2):
-    min(num1,num2) = smaller
+    
     for i in range (0,smaller):
-        if greater%(smaller-i) == 0:
+        if num1%(num2-i) == 0:
             return(smaller - i)
             break
         
